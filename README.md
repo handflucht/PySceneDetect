@@ -3,9 +3,16 @@
 `PySceneDetect` (https://pyscenedetect.readthedocs.io/en/latest/) running on `Ubuntu:16.04` with `Python 2.7.x`.
 
 
-## Building
+## Getting the image
+
+Build on your own:
 ```
 # docker build https://raw.githubusercontent.com/handflucht/PySceneDetect/master/Dockerfile -t pyscenedetect:latest
+```
+
+or pull:
+```
+# docker pull handflucht/pyscenedetect
 ```
 
 ## Usage
@@ -31,6 +38,7 @@ Analyzing video at `/some/path/video.mp4` and saving each scene to a separate fi
 Verify that the above parameters are correct (especially framerate, use --force-fps to correct if required).
 [PySceneDetect] Processing complete, found 0 scenes in video.
 [PySceneDetect] Processed 24563 / 24563 frames read in 39.9 secs (avg 615.7 FPS).
+
 # ls /some/path
 video.mp4            video_parts-003.mp4  video_parts-006.mp4
 video_parts-001.mp4  video_parts-004.mp4  video_parts-007.mp4
