@@ -22,14 +22,17 @@ RUN cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local ..
 RUN make \
     && make install
 
-# Download PySceneDetect
-WORKDIR /tmp
-RUN wget https://github.com/Breakthrough/PySceneDetect/archive/v0.4.zip -qO /tmp/pyscenedetect.zip \
-    && unzip -q /tmp/pyscenedetect.zip
+# Specify a particular PySceneDetect release (e.g., '0.5') or leave blank for
+# the latest version
+ARG SCENEDETECT_VERSION=""
 
 # Install PySceneDetect
-WORKDIR /tmp/PySceneDetect-0.4
-RUN python setup.py install
+RUN apt-get install -y python-pip && \
+    if [ "$SCENEDETECT_VERSION" = "" ]; then \
+      pip install scenedetect; \
+    else \
+      pip install scenedetect=="$SCENEDETECT_VERSION"; \
+    fi
 
 # Install MKVToolNix. Before we have to install apt-https support and add sources
 RUN apt-get install -y apt-transport-https \
