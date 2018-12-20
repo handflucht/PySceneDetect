@@ -38,6 +38,8 @@ RUN apt-get install -y apt-transport-https \
     && echo "deb-src https://mkvtoolnix.download/ubuntu/ xenial main" >> /etc/apt/sources.list \
     && apt-get update \
     && apt-get install -y mkvtoolnix
+	
+RUN apt-get install -y ffmpeg
 
 # Cleanup
 RUN rm -rf /tmp/*
