@@ -24,11 +24,11 @@ RUN make \
 
 # Download PySceneDetect
 WORKDIR /tmp
-RUN wget https://github.com/Breakthrough/PySceneDetect/archive/v0.4.zip -qO /tmp/pyscenedetect.zip \
+RUN wget https://github.com/Breakthrough/PySceneDetect/archive/v0.5.zip -qO /tmp/pyscenedetect.zip \
     && unzip -q /tmp/pyscenedetect.zip
 
 # Install PySceneDetect
-WORKDIR /tmp/PySceneDetect-0.4
+WORKDIR /tmp/PySceneDetect-0.5
 RUN python setup.py install
 
 # Install MKVToolNix. Before we have to install apt-https support and add sources
