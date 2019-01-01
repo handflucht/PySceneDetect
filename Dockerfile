@@ -1,13 +1,16 @@
 FROM jjanzic/docker-python3-opencv:opencv-3.4.1
 
-# Download PySceneDetect
-WORKDIR /tmp
-RUN wget https://github.com/Breakthrough/PySceneDetect/archive/v0.5.zip -qO /tmp/pyscenedetect.zip \
-    && unzip -q /tmp/pyscenedetect.zip
+# Specify a particular PySceneDetect release (e.g., '0.5') or leave blank for
+# the latest version
+ARG SCENEDETECT_VERSION=""
 
 # Install PySceneDetect
-WORKDIR /tmp/PySceneDetect-0.5
-RUN python setup.py install
+RUN apt-get install -y python-pip && \
+    if [ "$SCENEDETECT_VERSION" = "" ]; then \
+      pip install scenedetect; \
+    else \
+      pip install scenedetect=="$SCENEDETECT_VERSION"; \
+    fi
 
 # Install MKVToolNix. Before we have to install apt-https support and add sources
 RUN apt-get install -y apt-transport-https \
