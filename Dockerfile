@@ -15,15 +15,16 @@ RUN apt-get install -y python-pip && \
 # Install MKVToolNix. Before we have to install apt-https support and add sources
 RUN apt-get install -y apt-transport-https \
     && wget -q -O - https://mkvtoolnix.download/gpg-pub-moritzbunkus.txt | apt-key add - \
-    && echo "deb https://mkvtoolnix.download/ubuntu/ xenial main" >> /etc/apt/sources.list \
-    && echo "deb-src https://mkvtoolnix.download/ubuntu/ xenial main" >> /etc/apt/sources.list \
     && apt-get update \
     && apt-get install -y mkvtoolnix
 	
-RUN apt-get install -y ffmpeg
+# Install ffmpeg
+WORKDIR /tmp
+RUN wget https://raw.githubusercontent.com/MRDHR/ffmpeg-install/master/ffmpeg-install \
+	&& chmod a+x ffmpeg-install \
+	&& ./ffmpeg-install --install release
 
 # Cleanup
-RUN rm -rf /tmp/*
-WORKDIR /tmp
+RUN rm -rf /tmp
 
 ENTRYPOINT ["scenedetect"]
