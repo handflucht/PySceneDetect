@@ -1,6 +1,6 @@
 # PySceneDetect
 
-`PySceneDetect` (https://pyscenedetect.readthedocs.io/en/latest/) running on `Ubuntu:16.04` with `Python 2.7.x`.
+`PySceneDetect` (https://pyscenedetect.readthedocs.io/en/latest/) running on `Debian 10` with `Python 3.9.0`.
 
 
 ## Getting the image
@@ -89,4 +89,23 @@ Analyzing video at `/some/path/video.mp4` and saving each scene to a separate fi
 
 ```
 # docker run -v /some/path:/video:z pyscenedetect:latest -i /video/video.mp4 -o /video/ detect-content split-video
+```
+
+# More information
+
+OS and python-version used by this image:
+```
+$ podman run -it --entrypoint /bin/bash handflucht/pyscenedetect 
+# cat /etc/*release
+PRETTY_NAME="Debian GNU/Linux 10 (buster)"
+NAME="Debian GNU/Linux"
+VERSION_ID="10"
+VERSION="10 (buster)"
+VERSION_CODENAME=buster
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+# python --version
+Python 3.9.0
 ```
