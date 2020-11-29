@@ -7,7 +7,7 @@
 
 Build on your own:
 ```
-# docker build https://raw.githubusercontent.com/handflucht/PySceneDetect/master/Dockerfile -t pyscenedetect:latest
+# docker build github.com/handflucht/PySceneDetect -t pyscenedetect:latest
 ```
 
 or pull:
@@ -88,5 +88,5 @@ Commands:
 Analyzing video at `/some/path/video.mp4` and saving each scene to a separate file:
 
 ```
-# docker run -v /some/path:/video pyscenedetect:latest -i /video/video.mp4 -o /video/ detect-content split-video
+# docker run -v /some/path:/video:z pyscenedetect:latest -i /video/video.mp4 -o /video/ detect-content split-video
 ```

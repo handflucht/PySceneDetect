@@ -1,12 +1,11 @@
-FROM jjanzic/docker-python3-opencv:opencv-3.4.1
+FROM handflucht/docker-python3-opencv:latest
 
 # Specify a particular PySceneDetect release (e.g., '0.5') or leave blank for
 # the latest version
 ARG SCENEDETECT_VERSION=""
 
 # Install PySceneDetect
-RUN apt-get install -y python-pip && \
-    if [ "$SCENEDETECT_VERSION" = "" ]; then \
+RUN if [ "$SCENEDETECT_VERSION" = "" ]; then \
       pip install scenedetect; \
     else \
       pip install scenedetect=="$SCENEDETECT_VERSION"; \
